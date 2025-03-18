@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
@@ -12,7 +13,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        $products = Product::orderBy('created_at','DESC')->get();
+        return view('products.index', compact('products'));
     }
 
     /**
@@ -28,7 +30,15 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
+        // dd($request->all());
+        Auth::user()->products()->create(  [
+            'name' => $request->name,
+            'price' => $request->price,
+            'description' => $request->description,
+            'img' => $request->has('img') ? $request->file('img')->store('img','public') : '/public/img/default.jpg',
+        ]);
+
+        return redirect(route('welcome'))->with('message','Prodotto caricato con successo');
     }
 
     /**

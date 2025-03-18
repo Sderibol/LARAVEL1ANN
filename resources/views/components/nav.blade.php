@@ -47,7 +47,7 @@
 						<a class="dropdown-item" href="{{route('products.create')}}">Aggiungi un nuovo prodotto</a>
 					</li>
 					<li>
-						<a class="dropdown-item" href="#">Lista prodotti</a>
+						<a class="dropdown-item" href="{{route('products.index')}}">Lista prodotti</a>
 					</li>
 					<li>
 						<form method="POST" action="{{route('logout')}}">

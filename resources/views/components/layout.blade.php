@@ -10,6 +10,11 @@
 <body>
 	<x-nav/>
 	
+	@if (session('message'))
+		<div class="alert alert-success">
+			{{ session('message') }}
+		</div>
+	@endif
 
 	<min-vh100>
 		{{ $slot }}
