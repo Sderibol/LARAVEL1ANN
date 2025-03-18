@@ -11,3 +11,5 @@ Route::get('/products/create',[ProductController::class,'create'])->name('produc
 Route::post('/products/store',[ProductController::class,'store'])->name('products.store')->middleware('auth');
 Route::get('/products/index',[ProductController::class,'index'])->name('products.index');
 
+Route::get('/products/show/{product}',[ProductController::class,'show'])->name('products.show')->middleware('auth');
+

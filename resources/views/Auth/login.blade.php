@@ -1,4 +1,4 @@
-<x-layout>
+<x-layout titlePage="Accedi">
 	<x-header title="Accedi"/>
 
 	<div class="container my-5">
@@ -45,14 +45,14 @@
 						@csrf
 						<!-- Email input -->
 						<div data-mdb-input-init class="form-outline mb-4">
-							<input type="email" id="loginName" class="form-control" name="email" />
 							<label class="form-label" for="loginName">Email or username</label>
+							<input type="email" id="loginName" class="form-control" name="email" />
 						</div>
 						
 						<!-- Password input -->
 						<div data-mdb-input-init class="form-outline mb-4">
-							<input type="password" id="loginPassword" class="form-control" name="password" />
 							<label class="form-label" for="loginPassword">Password</label>
+							<input type="password" id="loginPassword" class="form-control" name="password" />
 						</div>
 						
 					

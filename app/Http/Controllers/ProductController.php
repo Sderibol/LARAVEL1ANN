@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -22,7 +23,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view("products.create");
+        $tags = Tag::all();
+        return view("products.create", compact("tags"));
     }
 
     /**
@@ -31,13 +33,14 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         // dd($request->all());
-        Auth::user()->products()->create(  [
+        $product = Auth::user()->products()->create(  [
             'name' => $request->name,
             'price' => $request->price,
             'description' => $request->description,
             'img' => $request->has('img') ? $request->file('img')->store('img','public') : '/public/img/default.jpg',
         ]);
-
+        $product->tags()->sync($request->tags);
+        
         return redirect(route('welcome'))->with('message','Prodotto caricato con successo');
     }
 
@@ -46,7 +49,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        //
+        return view('products.show', compact('product'));
     }
 
     /**

@@ -1,4 +1,4 @@
-<x-layout>
+<x-layout titlePage="Registrati">
 	<x-header title="Registrati"/>
 	<div class="container my-5">
 		<div class="row justify-content-center">
