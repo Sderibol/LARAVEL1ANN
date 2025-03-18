@@ -55,6 +55,12 @@
 							<button type="submit" class="btn btn-danger mt-2 mx-2"  href="{{route('logout')}}">Logout</button>
 						</form>
 					</li>
+					<li>
+							<form method="POST" action="{{route('logout')}}">
+							@csrf
+							<button type="submit" class="btn btn-danger mt-2 mx-2"  href="{{route('logout')}}">Logout</button>
+						</form>
+					</li>
 				</ul>
 			</li>
 		</ul>

@@ -13,3 +13,4 @@ Route::get('/products/index',[ProductController::class,'index'])->name('products
 
 Route::get('/products/show/{product}',[ProductController::class,'show'])->name('products.show')->middleware('auth');
 
+
