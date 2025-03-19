@@ -56,9 +56,12 @@
 						</form>
 					</li>
 					<li>
-							<form method="POST" action="{{route('logout')}}">
+						<button type="submit" class="btn btn-danger mt-2 mx-2" onclick="event.preventDefault(); document.getElementById('form-destroy').submit();">
+							Elimina account
+						</button>
+						<form id="form-destroy" method="POST" action="{{route('userDestroy')}}" class="d-none">
 							@csrf
-							<button type="submit" class="btn btn-danger mt-2 mx-2"  href="{{route('logout')}}">Logout</button>
+							@method('DELETE')
 						</form>
 					</li>
 				</ul>

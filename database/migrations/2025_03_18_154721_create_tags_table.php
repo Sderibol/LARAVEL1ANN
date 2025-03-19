@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Tag;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -16,6 +17,11 @@ return new class extends Migration
             $table->string('name');
             $table->timestamps();
         });
+
+        $names = ['Nuovo','Usato','Riparato','Riparazione','Come nuovo','Non funziona'];
+        foreach ($names as $name) {
+            Tag::create(['name'=> $name]);
+        }
     }
 
     /**

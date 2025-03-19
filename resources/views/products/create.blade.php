@@ -5,39 +5,57 @@
 			<div class="col-12 col-md-5">
 				<form class="p-5 bg-light border shadow rounded" method="POST" action="{{route('products.store')}}" enctype="multipart/form-data">
 					@csrf
-					<div class="row mb-4">
-						<div data-mdb-input-init class="form-outline mb-4">
-							<label class="form-label" >Nome</label>
-							<input type="text" class="form-control" name="name" />
-						</div>
-						<div data-mdb-input-init class="form-outline mb-4">
-							<label class="form-label" >Descrizione</label>
-							<textarea name="description" id="" class="form-control" cols="30" rows="3"></textarea>
-						</div>
-						<div data-mdb-input-init class="form-outline mb-4">
-							<label class="form-label" >Prezzo</label>
-							<input type="number" id="form3Example3" class="form-control" name="price" />
-						</div>
-						<div data-mdb-input-init class="form-outline mb-4">
-							<label class="form-label" >Aggiungi un immagine</label>
-							<input type="file"  class="form-control" name="img" />
-						</div>
-						<div data-mdb-input-init class="form-outline mb-4">
-							<label class="form-label" >Aggiungi un tag</label>
-							<select name="tags[]"  class="form-control" multiple>
-								@foreach ($tags as $tag)
-									<option value="{{$tag->id}}">{{$tag->name}}</option>
-								@endforeach
-							</select>
-						</div>
-						<div class=" mt-3 text-center">
-							<button  type="submit" class="btn btn-primary mb-4">Aggiungi</button>
+					<div class="mb-4">
+						<div class="form-group mb-3">
+							<label for="name" class="form-label">Nome</label>
+							<input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{old('name')}}" />
+							@error('name')
+								<div class="invalid-feedback">{{ $message }}</div>
+							@enderror
 						</div>
 						
+						<div class="form-group mb-3">
+							<label for="description" class="form-label">Descrizione</label>
+							<textarea name="description" id="description" class="form-control @error('description') is-invalid @enderror" cols="30" rows="3">{{old('description')}}</textarea>
+							@error('description')
+								<div class="invalid-feedback">{{ $message }}</div>
+							@enderror
+						</div>
+
+						<div class="form-group mb-3">
+							<label for="price" class="form-label">Prezzo</label>
+							<input type="number" step="0.01" class="form-control @error('price') is-invalid @enderror" id="price" name="price" value="{{old('price')}}" />
+							@error('price')
+								<div class="invalid-feedback">{{ $message }}</div>
+							@enderror
+						</div>
+
+						<div class="form-group mb-3">
+							<label for="img" class="form-label">Aggiungi un'immagine</label>
+							<input type="file" class="form-control @error('img') is-invalid @enderror" id="img" name="img" />
+							@error('img')
+								<div class="invalid-feedback">{{ $message }}</div>
+							@enderror
+						</div>
+
+						<div class="form-group mb-3">
+							<label for="tags" class="form-label">Aggiungi tags</label>
+							<select name="tags[]" id="tags" class="form-control @error('tags') is-invalid @enderror" multiple>
+								@foreach ($tags as $tag)
+									<option value="{{$tag->id}}" {{ in_array($tag->id, old('tags', [])) ? 'selected' : '' }}>
+										{{$tag->name}}
+									</option>
+								@endforeach
+							</select>
+							@error('tags')
+								<div class="invalid-feedback">{{ $message }}</div>
+							@enderror
+						</div>
+
+						<div class="text-center">
+							<button type="submit" class="btn btn-primary">Aggiungi</button>
+						</div>
 					</div>
-					
-					
-					
 				</form>
 			</div>
 		</div>
